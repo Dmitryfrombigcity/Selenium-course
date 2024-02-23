@@ -26,7 +26,7 @@ with webdriver.Chrome(options=options) as driver:
         ec.presence_of_all_elements_located(('class name', 'hljs-string')))
            ]
     print(lst)
-    sleep(100)
+    sleep(10)
 
     # driver.switch_to.new_window()
     # driver.get(stepic)
