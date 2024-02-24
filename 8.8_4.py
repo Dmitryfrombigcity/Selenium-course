@@ -16,7 +16,7 @@ options.add_argument('--window-size=1920,1080')
 options.add_experimental_option("excludeSwitches", ['enable-automation'])
 
 with webdriver.Chrome(options=options) as driver:
-    wait = WebDriverWait(driver, 15)
+    wait = WebDriverWait(driver, 60)
 
     driver.get(stepic)
     stepic = driver.current_window_handle
@@ -25,17 +25,20 @@ with webdriver.Chrome(options=options) as driver:
     lst = [item.text.strip("'") for item in wait.until(
         ec.presence_of_all_elements_located(('class name', 'hljs-string')))
            ]
-    print(lst)
-    sleep(10)
 
-    # driver.switch_to.new_window()
-    # driver.get(stepic)
-    # driver.add_cookie({'name': 'sessionid', 'value': env('STEPIK_SESSIONID')})
-    # driver.refresh()
-    # wait.until(
-    #     ec.visibility_of_element_located(('xpath', '//div[@class="attempt"]//textarea'))
-    # ).send_keys(result)
-    # wait.until(
-    #     ec.element_to_be_clickable(('xpath', '//button[@class="submit-submission"]'))
-    # ).click()
-    # sleep(5)
+    driver.switch_to.new_window()
+    driver.get(url)
+    for item in lst:
+        wait.until(ec.element_to_be_clickable(('id', item))).click()
+    result = (alert := wait.until(ec.alert_is_present())).text
+    alert.accept()
+    print(result)
+
+    driver.switch_to.window(stepic)
+    wait.until(
+        ec.visibility_of_element_located(('xpath', '//div[@class="attempt"]//textarea'))
+    ).send_keys(result)
+    wait.until(
+        ec.element_to_be_clickable(('xpath', '//button[@class="submit-submission"]'))
+    ).click()
+    sleep(5)
