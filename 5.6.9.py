@@ -24,19 +24,19 @@ with webdriver.Chrome(options=options) as driver:
             ec.presence_of_all_elements_located(
                 ('xpath', '//span/..'))):
 
-        color = item.find_element('xpath', './span').text
-        dropdown = Select(item.find_element('xpath', './select'))
+        color = item.find_element('xpath', 'span').text
+        dropdown = Select(item.find_element('xpath', 'select'))
         options = dropdown.options
         dropdown.select_by_visible_text(color)
 
-        for button in item.find_elements('xpath', './div/button'):
+        for button in item.find_elements('xpath', 'div/button'):
             if button.get_attribute('data-hex') == color:
                 button.click()
                 break
 
-        item.find_element('xpath', './input[@type="checkbox"]').click()
-        item.find_element('xpath', './input[@type="text"]').send_keys(color)
-        item.find_element('xpath', './button').click()
+        item.find_element('xpath', 'input[@type="checkbox"]').click()
+        item.find_element('xpath', 'input[@type="text"]').send_keys(color)
+        item.find_element('xpath', 'button').click()
 
     driver.find_element('xpath', '//button[text()="Проверить все элементы"]').click()
     alert = wait.until(ec.alert_is_present())
