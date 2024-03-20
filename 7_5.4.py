@@ -1,17 +1,17 @@
 # не работает
-# driver.execute_script("return window.innerWidth") =610
-# driver.execute_script("return window.innerWidth") =612
-# driver.execute_script("return window.innerWidth") =612
-# driver.execute_script("return window.innerWidth") =613
-# driver.execute_script("return window.innerWidth") =614
-# driver.execute_script("return window.innerWidth") =615
-# driver.execute_script("return window.innerWidth") =617 !!!
-# driver.execute_script("return window.innerWidth") =617
-# driver.execute_script("return window.innerWidth") =618
-# driver.execute_script("return window.innerWidth") =619
-# driver.execute_script("return window.innerWidth") =620
-# driver.execute_script("return window.innerWidth") =622
-# driver.execute_script("return window.innerWidth") =622
+# driver.execute_script("return window.innerWidth") = 610  driver.get_window_size() = {'width': 654, 'height': 404}
+# driver.execute_script("return window.innerWidth") = 612  driver.get_window_size() = {'width': 655, 'height': 404}
+# driver.execute_script("return window.innerWidth") = 612  driver.get_window_size() = {'width': 656, 'height': 404}
+# driver.execute_script("return window.innerWidth") = 613  driver.get_window_size() = {'width': 657, 'height': 404}
+# driver.execute_script("return window.innerWidth") = 614  driver.get_window_size() = {'width': 658, 'height': 404}
+# driver.execute_script("return window.innerWidth") = 615  driver.get_window_size() = {'width': 659, 'height': 404}
+# driver.execute_script("return window.innerWidth") = 617  driver.get_window_size() = {'width': 660, 'height': 404} !!!
+# driver.execute_script("return window.innerWidth") = 617  driver.get_window_size() = {'width': 661, 'height': 404} !!!
+# driver.execute_script("return window.innerWidth") = 618  driver.get_window_size() = {'width': 662, 'height': 404}
+# driver.execute_script("return window.innerWidth") = 619  driver.get_window_size() = {'width': 663, 'height': 404}
+# driver.execute_script("return window.innerWidth") = 620  driver.get_window_size() = {'width': 664, 'height': 404}
+# driver.execute_script("return window.innerWidth") = 622  driver.get_window_size() = {'width': 665, 'height': 404}
+# driver.execute_script("return window.innerWidth") = 622  driver.get_window_size() = {'width': 666, 'height': 404}
 from time import sleep
 
 from environs import Env
@@ -57,7 +57,7 @@ with webdriver.Chrome(options=options) as driver:
 
         while True:
             driver.set_window_size((width := width + 1), height)
-            print(f'{driver.execute_script("return window.innerWidth") = }')
+            print(f'{driver.execute_script("return window.innerWidth") = }  {driver.get_window_size() = }')
             if driver.execute_script("return window.innerWidth") == x:
                 break
 
