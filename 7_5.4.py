@@ -57,7 +57,7 @@ with webdriver.Chrome(options=options) as driver:
 
         while True:
             driver.set_window_size((width := width + 1), height)
-            print(f'{driver.execute_script("return window.innerWidth") = }')
+            print(f'{driver.execute_script("return window.innerWidth") = }  {driver.get_window_size() = }')
             if driver.execute_script("return window.innerWidth") == x:
                 break
 
